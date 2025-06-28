@@ -3,7 +3,7 @@
  * Plugin Name: Bloqueo de Etiquetas Automáticas
  * Description: Solo permite etiquetas asignadas manualmente. Elimina cualquier etiqueta añadida automáticamente por contenido (como hashtags con #).
  * Version: 1.2
- * Author: Antonio Cambronero & ChatGPT
+ * Author: Antonio Cambronero (Blogpocket.com) & ChatGPT
  */
 
 defined( 'ABSPATH' ) or die( 'Acceso directo no permitido.' );
