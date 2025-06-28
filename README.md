@@ -25,6 +25,10 @@ Este plugin bloquea completamente ese comportamiento y garantiza que **solo se u
 El plugin se engancha al hook `wp_insert_post` con alta prioridad (999), lo que garantiza que sobrescribe cualquier intento previo de añadir etiquetas automáticamente.  
 Elimina cualquier etiqueta no introducida manualmente desde el editor del post.
 
+## Aviso importante
+
+Este plugin ha sido probado cuidadosamente antes de su publicación. Aun así, se recomienda verificar su funcionamiento en un entorno de pruebas antes de utilizarlo en producción. El autor no se hace responsable de posibles fallos o conflictos que puedan surgir. Realiza siempre una copia de seguridad de tu instalación de WordPress antes de aplicar cualquier cambio en un entorno en vivo.
+
 ## Changelog
 
 ### 1.2
