@@ -1,19 +1,22 @@
 <?php
 /**
  * Plugin Name: Bloqueo de Etiquetas Automáticas
- * Description: Elimina etiquetas que se hayan generado automáticamente a partir del contenido del post (por ejemplo, hashtags con #). Mantiene solo las etiquetas introducidas manualmente.
- * Version: 1.3
+ * Description: Elimina etiquetas generadas automáticamente a partir de hashtags en el contenido. Funciona para todos los tipos de contenido que usen la taxonomía 'post_tag'.
+ * Version: 2.0
  * Author: Antonio Cambronero & ChatGPT
  */
 
 defined( 'ABSPATH' ) or die( 'Acceso directo no permitido.' );
 
-add_action('wp_insert_post', 'bea_filtrar_etiquetas_automaticas', 999, 3);
-function bea_filtrar_etiquetas_automaticas($post_id, $post, $update) {
+add_action('wp_insert_post', 'bea_filtrar_etiquetas_automaticas_en_todos_los_post_types', 999, 3);
+function bea_filtrar_etiquetas_automaticas_en_todos_los_post_types($post_id, $post, $update) {
     if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) return;
     if ( wp_is_post_revision($post_id) ) return;
     if ( ! current_user_can('edit_post', $post_id) ) return;
-    if ( $post->post_type !== 'post' ) return;
+
+    // Solo actuar en post types que usen la taxonomía 'post_tag'
+    $taxonomies = get_object_taxonomies($post->post_type);
+    if ( !in_array('post_tag', $taxonomies) ) return;
 
     // Obtener contenido y etiquetas actuales
     $content = $post->post_content;
